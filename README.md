@@ -1,3 +1,12 @@
+This repository is tightly linked to [CF CLI](https://github.com/cloudfoundry/cli) issue [Uploaded buildpack stack (cflinuxfs3) does not match cflinuxfs3](https://github.com/cloudfoundry/cli/issues/1518). Refer to the issue for more details.
+
+To reproduce the issue simply run the ``./updateBuildpackFail.sh`` script. Note that the key element to successfully reproduce the issue is to have a [manifest.yml](https://github.com/ivandavidov/cf-update-buildpack-issue/blob/master/dummy_buildpack/manifest.yml) file in which the CF Linux FS stack has to be specified.
+
+Even though it is obvious, the _dummy buildpack_ is really dummy. It has properly defined buildpack structure but the buildpack itself does nothing (literally). The only purpose for the existence of this buildpack is to demonstrate the issue with the ``cf update-buildpack`` command.
+
+The output below is the same as in the [output_without_debug.txt](https://github.com/ivandavidov/cf-update-buildpack-issue/blob/master/output_without_debug.txt) file from my own test environment.
+
+---
 
 ```
 apama@vmbgcloudf06:~/Downloads/ivan/cf-update-buildpack-issue$ ./updateBuildpackFail.sh

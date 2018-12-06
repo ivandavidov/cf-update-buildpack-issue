@@ -64,7 +64,7 @@ sed -i "s|\\(.*\\)cflinuxfs.*|\\1cflinuxfs2|g" dummy_buildpack/manifest.yml
 cat dummy_buildpack/manifest.yml
 
 # (FAILURE AT THIS POINT) Update the buildpack and move it to position 6
-cf update-buildpack dummy_buildpack -p dummy_buildpack -s cflinuxfs2
+cf update-buildpack dummy_buildpack -p dummy_buildpack -i 6 -s cflinuxfs2
 
 # Let's see what's going on with all buildpacks
 cf buildpacks
@@ -80,7 +80,7 @@ sed -i "s|\\(.*\\)cflinuxfs.*|\\1cflinuxfs3|g" dummy_buildpack/manifest.yml
 cat dummy_buildpack/manifest.yml
 
 # (FAILURE AT THIS POINT) Update the buildpack and move it to position 6
-cf update-buildpack dummy_buildpack -p dummy_buildpack -s cflinuxfs3
+cf update-buildpack dummy_buildpack -p dummy_buildpack -i 6 -s cflinuxfs3
 
 # Let's see what's going on with all buildpacks
 cf buildpacks

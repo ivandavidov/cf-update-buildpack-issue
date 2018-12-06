@@ -1,0 +1,2660 @@
+apama@vmbgcloudf06:~/Downloads/ivan/cf-update-buildpack-issue$ export CF_TRACE=1
+apama@vmbgcloudf06:~/Downloads/ivan/cf-update-buildpack-issue$ ./updateBuildpackFail.sh
++ cf --version
+cf version 6.41.0+dd4c76cdd.2018-11-28
+++ cf buildpacks
+++ grep 'dummy_buildpack.*cflinuxfs2'
++ '[' 'dummy_buildpack         2          true      false    dummy_buildpack.zip                           cflinuxfs2' ']'
++ cf delete-buildpack dummy_buildpack -s cflinuxfs2 -f
+REQUEST: [2018-12-06T14:45:21+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:21+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:21 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: a68a8c83-be21-4131-75a3-7c2c05f27f29::51dea01c-fedf-4d70-8642-19594f6adc4f
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:21+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:21+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:21 GMT
+Set-Cookie: X-Uaa-Csrf=iEfia19Vn9XuBMrPg4kvA8; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:21 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: a9b3f1e3-aa7d-44c4-4792-152eb7231fc6
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+
+REQUEST: [2018-12-06T14:45:21+02:00]
+GET /v2/buildpacks?q=name%3Adummy_buildpack%3Bstack%3Acflinuxfs2 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:21+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 571
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:21 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 6cb9c2d2-3bc1-4c7b-60eb-3127dfe4419b::5813a0d1-70b8-4e41-a482-73d9deb067d1
+
+{
+  "total_results": 1,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "5216d04c-625a-41bf-aa88-de7173c024c8",
+        "url": "/v2/buildpacks/5216d04c-625a-41bf-aa88-de7173c024c8",
+        "created_at": "2018-12-06T12:42:01Z",
+        "updated_at": "2018-12-06T12:42:05Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 2,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    }
+  ]
+}
+Deleting buildpack dummy_buildpack with stack cflinuxfs2...
+
+REQUEST: [2018-12-06T14:45:21+02:00]
+DELETE /v2/buildpacks/5216d04c-625a-41bf-aa88-de7173c024c8?async=true HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:22+02:00]
+HTTP/1.1 202 Accepted
+Connection: close
+Content-Length: 270
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:22 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: c238fa06-1ccb-4112-6fd0-82b12424b0cb::6775c58f-7904-42b1-95ac-b60cb9da6e95
+
+{
+  "metadata": {
+    "guid": "bb69dfef-718f-456e-b2ab-c43de0d6e671",
+    "created_at": "2018-12-06T12:45:22Z",
+    "url": "/v2/jobs/bb69dfef-718f-456e-b2ab-c43de0d6e671"
+  },
+  "entity": {
+    "guid": "bb69dfef-718f-456e-b2ab-c43de0d6e671",
+    "status": "queued"
+  }
+}
+
+REQUEST: [2018-12-06T14:45:22+02:00]
+GET /v2/jobs/bb69dfef-718f-456e-b2ab-c43de0d6e671 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:22+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 270
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:22 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 9e85c693-b77a-40d5-5a7e-1d9469c9d489::54469668-f54f-4a9a-b545-76adfde087dd
+
+{
+  "metadata": {
+    "guid": "bb69dfef-718f-456e-b2ab-c43de0d6e671",
+    "created_at": "2018-12-06T12:45:22Z",
+    "url": "/v2/jobs/bb69dfef-718f-456e-b2ab-c43de0d6e671"
+  },
+  "entity": {
+    "guid": "bb69dfef-718f-456e-b2ab-c43de0d6e671",
+    "status": "queued"
+  }
+}
+
+REQUEST: [2018-12-06T14:45:27+02:00]
+GET /v2/jobs/bb69dfef-718f-456e-b2ab-c43de0d6e671 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:27+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 167
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:27 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 27cf53f3-a4cf-4cab-4df1-257183c05eae::8e56bf58-3d58-46db-b16b-b0c6916860fb
+
+{
+  "metadata": {
+    "guid": "0",
+    "created_at": "1970-01-01T00:00:00Z",
+    "url": "/v2/jobs/0"
+  },
+  "entity": {
+    "guid": "0",
+    "status": "finished"
+  }
+}
+OK
+++ cf buildpacks
+++ grep 'dummy_buildpack.*cflinuxfs3'
++ '[' 'dummy_buildpack         1          true      false    dummy_buildpack.zip                           cflinuxfs3' ']'
++ cf delete-buildpack dummy_buildpack -s cflinuxfs3 -f
+REQUEST: [2018-12-06T14:45:27+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:28+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: a5a7b3f4-fbfe-45dc-667d-1000ead5b6ff::f0479510-3bf4-42a9-b54a-2ea814258ea6
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:28+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:28+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:28 GMT
+Set-Cookie: X-Uaa-Csrf=snzz86qqY8fNgrTKXBBjYm; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:28 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: f00b8705-cf22-4671-63d0-27623cac4b87
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+
+REQUEST: [2018-12-06T14:45:28+02:00]
+GET /v2/buildpacks?q=name%3Adummy_buildpack%3Bstack%3Acflinuxfs3 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:28+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 571
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: e523d597-e635-4d0e-649a-b0f1ecc44ea3::6088ff0b-ada7-4db4-9f69-edd348ffebdd
+
+{
+  "total_results": 1,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "089e088b-767a-49b4-a055-ca2861c27bf7",
+        "url": "/v2/buildpacks/089e088b-767a-49b4-a055-ca2861c27bf7",
+        "created_at": "2018-12-06T12:42:03Z",
+        "updated_at": "2018-12-06T12:42:06Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 1,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    }
+  ]
+}
+Deleting buildpack dummy_buildpack with stack cflinuxfs3...
+
+REQUEST: [2018-12-06T14:45:28+02:00]
+DELETE /v2/buildpacks/089e088b-767a-49b4-a055-ca2861c27bf7?async=true HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:28+02:00]
+HTTP/1.1 202 Accepted
+Connection: close
+Content-Length: 270
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 36dea687-5b97-4209-4717-8952764c6e2e::a18fcd7a-b639-433b-a25c-3ce114184cee
+
+{
+  "metadata": {
+    "guid": "1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57",
+    "created_at": "2018-12-06T12:45:28Z",
+    "url": "/v2/jobs/1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57"
+  },
+  "entity": {
+    "guid": "1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57",
+    "status": "queued"
+  }
+}
+
+REQUEST: [2018-12-06T14:45:28+02:00]
+GET /v2/jobs/1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:28+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 270
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 14c518a4-936c-486e-5fba-c020ec696993::336127af-dfed-49b9-bbb2-f74c39499701
+
+{
+  "metadata": {
+    "guid": "1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57",
+    "created_at": "2018-12-06T12:45:28Z",
+    "url": "/v2/jobs/1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57"
+  },
+  "entity": {
+    "guid": "1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57",
+    "status": "queued"
+  }
+}
+
+REQUEST: [2018-12-06T14:45:33+02:00]
+GET /v2/jobs/1d501aa4-5ff9-4dd0-8d82-aa1d180ffb57 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:34+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 167
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:34 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 104a317c-5b14-494b-7254-602234121aec::0e8977cf-af36-44db-92ea-6e9bf404087f
+
+{
+  "metadata": {
+    "guid": "0",
+    "created_at": "1970-01-01T00:00:00Z",
+    "url": "/v2/jobs/0"
+  },
+  "entity": {
+    "guid": "0",
+    "status": "finished"
+  }
+}
+OK
++ sed -i 's|\(.*\)cflinuxfs.*|\1cflinuxfs2|g' dummy_buildpack/manifest.yml
++ cat dummy_buildpack/manifest.yml
+---
+stack:
+  - cflinuxfs2
++ cf create-buildpack dummy_buildpack dummy_buildpack/ 1
+REQUEST: [2018-12-06T14:45:34+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:34+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:34 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: af8dd0df-4755-4775-5c70-b5c029336069::309de2f5-f773-4899-bf66-8768afed64ec
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:34+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:34+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:34 GMT
+Set-Cookie: X-Uaa-Csrf=gJClKDaZqJfyT7eUIo8mw4; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:34 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 9180b1fe-0bc8-4381-4378-2359348d1f92
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+Creating buildpack dummy_buildpack as admin...
+REQUEST: [2018-12-06T14:45:34+02:00]
+POST /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+{
+  "enabled": true,
+  "name": "dummy_buildpack",
+  "position": 1
+}
+
+
+RESPONSE: [2018-12-06T14:45:34+02:00]
+HTTP/1.1 201 Created
+Content-Length: 375
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:34 GMT
+Location: /v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 1f7c66e0-1d1d-4bfa-7a49-8eecbafc4dda::8aea688a-f6f2-4f1e-b75a-8d710943f126
+{
+  "entity": {
+    "enabled": true,
+    "filename": null,
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 1,
+    "stack": null
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:34Z",
+    "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+    "updated_at": "2018-12-06T12:45:34Z",
+    "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da"
+  }
+}
+
+
+OK
+
+Uploading buildpack dummy_buildpack as admin...
+ 0 B / 836 B [---------------------------------------------------------------------------------------]   0.00%
+REQUEST: [2018-12-06T14:45:34+02:00]
+PUT /v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da/bits HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: multipart/form-data; boundary=376af0d9bc4afa3b15a3c9358adfd91b91e0cfb729e415a5da3702656588
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+[multipart/form-data Content Hidden]
+
+RESPONSE: [2018-12-06T14:45:34+02:00]
+HTTP/1.1 201 Created
+Content-Length: 400
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:34 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 3784f12a-f3c4-4797-5b84-020984b13f6a::93e9f8d4-1031-42f2-83f4-a45c9fcb75cc
+{
+  "entity": {
+    "enabled": true,
+    "filename": "dummy_buildpack.zip",
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 1,
+    "stack": "cflinuxfs2"
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:34Z",
+    "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+    "updated_at": "2018-12-06T12:45:34Z",
+    "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da"
+  }
+}
+
+
+ 836 B / 836 B [==================================================================================] 100.00% 1s
+
+Done uploading
+OK
++ cf buildpacks
+Getting buildpacks...
+
+
+REQUEST: [2018-12-06T14:45:36+02:00]
+GET /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:37+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 9338
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:37 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 203e0512-4087-4d58-6b0f-85275d144435::72a81ce9-07d7-430d-b5ea-083e1b98c0a2
+
+{
+  "total_results": 19,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "created_at": "2018-12-06T12:45:34Z",
+        "updated_at": "2018-12-06T12:45:34Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 1,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "a41e5649-14d4-44c6-ac08-73748844bed1",
+        "url": "/v2/buildpacks/a41e5649-14d4-44c6-ac08-73748844bed1",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-05T14:55:55Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 2,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs3-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "url": "/v2/buildpacks/32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "created_at": "2018-12-04T15:32:05Z",
+        "updated_at": "2018-12-05T14:55:38Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 3,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs2-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "url": "/v2/buildpacks/97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-05T13:28:29Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 4,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs2-v1.0.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "url": "/v2/buildpacks/2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 5,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs2-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e6433194-226d-4c01-9f19-3077f9e2c897",
+        "url": "/v2/buildpacks/e6433194-226d-4c01-9f19-3077f9e2c897",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 6,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs3-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "url": "/v2/buildpacks/ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 7,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs2-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "url": "/v2/buildpacks/8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 8,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs3-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "url": "/v2/buildpacks/8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 9,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "53782e3b-6d83-4633-bc78-801838550598",
+        "url": "/v2/buildpacks/53782e3b-6d83-4633-bc78-801838550598",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 10,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "url": "/v2/buildpacks/e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 11,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs2-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "url": "/v2/buildpacks/732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 12,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs3-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "url": "/v2/buildpacks/6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 13,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs2-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "url": "/v2/buildpacks/e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 14,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs3-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "42ae30b9-66d5-460a-917c-843cdab4a153",
+        "url": "/v2/buildpacks/42ae30b9-66d5-460a-917c-843cdab4a153",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 15,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs2-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "37908003-6381-455b-8b10-792b7dc08bba",
+        "url": "/v2/buildpacks/37908003-6381-455b-8b10-792b7dc08bba",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 16,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs3-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "url": "/v2/buildpacks/c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 17,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs2-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "url": "/v2/buildpacks/4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 18,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs3-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "633d6821-ae12-4f16-a306-214eba35884c",
+        "url": "/v2/buildpacks/633d6821-ae12-4f16-a306-214eba35884c",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 19,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs3-v1.0.27.zip"
+      }
+    }
+  ]
+}
+buildpack               position   enabled   locked   filename                                      stack
+dummy_buildpack         1          true      false    dummy_buildpack.zip                           cflinuxfs2
+staticfile_buildpack    2          true      false    staticfile-buildpack-cflinuxfs3-v1.4.35.zip   cflinuxfs3
+staticfile_buildpack    3          true      false    staticfile-buildpack-cflinuxfs2-v1.4.35.zip   cflinuxfs2
+binary_buildpack        4          true      false    binary-buildpack-cflinuxfs2-v1.0.27.zip       cflinuxfs2
+java_buildpack          5          true      false    java-buildpack-cflinuxfs2-v4.16.1.zip         cflinuxfs2
+java_buildpack          6          true      false    java-buildpack-cflinuxfs3-v4.16.1.zip         cflinuxfs3
+ruby_buildpack          7          true      false    ruby-buildpack-cflinuxfs2-v1.7.27.zip         cflinuxfs2
+ruby_buildpack          8          true      false    ruby-buildpack-cflinuxfs3-v1.7.27.zip         cflinuxfs3
+dotnet_core_buildpack   9          true      false    dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip   cflinuxfs2
+dotnet_core_buildpack   10         true      false    dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip   cflinuxfs3
+nodejs_buildpack        11         true      false    nodejs-buildpack-cflinuxfs2-v1.6.34.zip       cflinuxfs2
+nodejs_buildpack        12         true      false    nodejs-buildpack-cflinuxfs3-v1.6.34.zip       cflinuxfs3
+go_buildpack            13         true      false    go-buildpack-cflinuxfs2-v1.8.29.zip           cflinuxfs2
+go_buildpack            14         true      false    go-buildpack-cflinuxfs3-v1.8.29.zip           cflinuxfs3
+python_buildpack        15         true      false    python-buildpack-cflinuxfs2-v1.6.23.zip       cflinuxfs2
+python_buildpack        16         true      false    python-buildpack-cflinuxfs3-v1.6.23.zip       cflinuxfs3
+php_buildpack           17         true      false    php-buildpack-cflinuxfs2-v4.3.64.zip          cflinuxfs2
+php_buildpack           18         true      false    php-buildpack-cflinuxfs3-v4.3.64.zip          cflinuxfs3
+binary_buildpack        19         true      false    binary-buildpack-cflinuxfs3-v1.0.27.zip       cflinuxfs3
++ sed -i 's|\(.*\)cflinuxfs.*|\1cflinuxfs3|g' dummy_buildpack/manifest.yml
++ cat dummy_buildpack/manifest.yml
+---
+stack:
+  - cflinuxfs3
++ cf create-buildpack dummy_buildpack dummy_buildpack/ 1
+REQUEST: [2018-12-06T14:45:37+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:37+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:37 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 1a7e44f0-3227-486b-59e7-414558639460::a6253929-e3f0-44c6-9c08-383705be8182
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:37+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:38+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:38 GMT
+Set-Cookie: X-Uaa-Csrf=UxDdLPzig8iUf78M1cT77G; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:38 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 87225e41-94e5-4ec6-498b-fde299b60335
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+Creating buildpack dummy_buildpack as admin...
+REQUEST: [2018-12-06T14:45:38+02:00]
+POST /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+{
+  "enabled": true,
+  "name": "dummy_buildpack",
+  "position": 1
+}
+
+
+RESPONSE: [2018-12-06T14:45:38+02:00]
+HTTP/1.1 201 Created
+Content-Length: 375
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:38 GMT
+Location: /v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: eaa5f2ba-a93c-42fe-58e0-32075c96d636::9fdfaba4-73ac-4c7d-b20f-effa0d9e4078
+{
+  "entity": {
+    "enabled": true,
+    "filename": null,
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 1,
+    "stack": null
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:38Z",
+    "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+    "updated_at": "2018-12-06T12:45:38Z",
+    "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90"
+  }
+}
+
+
+OK
+
+Uploading buildpack dummy_buildpack as admin...
+ 0 B / 836 B [---------------------------------------------------------------------------------------]   0.00%
+REQUEST: [2018-12-06T14:45:38+02:00]
+PUT /v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90/bits HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: multipart/form-data; boundary=dc7498eae29a86e27a67a5086557eecf4982ffba32cbd77a63a6d2d6afe6
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+[multipart/form-data Content Hidden]
+
+RESPONSE: [2018-12-06T14:45:38+02:00]
+HTTP/1.1 201 Created
+Content-Length: 400
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:38 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 6f64423d-fda7-4fe4-565c-12cedc757d95::4a18c6c7-798b-4197-901a-258d6ff5c70b
+{
+  "entity": {
+    "enabled": true,
+    "filename": "dummy_buildpack.zip",
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 1,
+    "stack": "cflinuxfs3"
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:38Z",
+    "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+    "updated_at": "2018-12-06T12:45:38Z",
+    "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90"
+  }
+}
+
+
+ 836 B / 836 B [==================================================================================] 100.00% 1s
+
+Done uploading
+OK
++ cf buildpacks
+Getting buildpacks...
+
+
+REQUEST: [2018-12-06T14:45:39+02:00]
+GET /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:39+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 9805
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:39 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 7236c1ac-e09b-4b7e-679b-c5b2af3659b5::92b85434-d251-43ed-b011-c1722f869385
+
+{
+  "total_results": 20,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "created_at": "2018-12-06T12:45:38Z",
+        "updated_at": "2018-12-06T12:45:38Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 1,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "created_at": "2018-12-06T12:45:34Z",
+        "updated_at": "2018-12-06T12:45:34Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 2,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "a41e5649-14d4-44c6-ac08-73748844bed1",
+        "url": "/v2/buildpacks/a41e5649-14d4-44c6-ac08-73748844bed1",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-05T14:55:55Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 3,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs3-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "url": "/v2/buildpacks/32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "created_at": "2018-12-04T15:32:05Z",
+        "updated_at": "2018-12-05T14:55:38Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 4,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs2-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "url": "/v2/buildpacks/97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-05T13:28:29Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 5,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs2-v1.0.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "url": "/v2/buildpacks/2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 6,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs2-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e6433194-226d-4c01-9f19-3077f9e2c897",
+        "url": "/v2/buildpacks/e6433194-226d-4c01-9f19-3077f9e2c897",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 7,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs3-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "url": "/v2/buildpacks/ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 8,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs2-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "url": "/v2/buildpacks/8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 9,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs3-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "url": "/v2/buildpacks/8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 10,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "53782e3b-6d83-4633-bc78-801838550598",
+        "url": "/v2/buildpacks/53782e3b-6d83-4633-bc78-801838550598",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 11,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "url": "/v2/buildpacks/e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 12,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs2-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "url": "/v2/buildpacks/732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 13,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs3-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "url": "/v2/buildpacks/6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 14,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs2-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "url": "/v2/buildpacks/e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 15,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs3-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "42ae30b9-66d5-460a-917c-843cdab4a153",
+        "url": "/v2/buildpacks/42ae30b9-66d5-460a-917c-843cdab4a153",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 16,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs2-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "37908003-6381-455b-8b10-792b7dc08bba",
+        "url": "/v2/buildpacks/37908003-6381-455b-8b10-792b7dc08bba",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 17,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs3-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "url": "/v2/buildpacks/c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 18,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs2-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "url": "/v2/buildpacks/4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 19,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs3-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "633d6821-ae12-4f16-a306-214eba35884c",
+        "url": "/v2/buildpacks/633d6821-ae12-4f16-a306-214eba35884c",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 20,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs3-v1.0.27.zip"
+      }
+    }
+  ]
+}
+buildpack               position   enabled   locked   filename                                      stack
+dummy_buildpack         1          true      false    dummy_buildpack.zip                           cflinuxfs3
+dummy_buildpack         2          true      false    dummy_buildpack.zip                           cflinuxfs2
+staticfile_buildpack    3          true      false    staticfile-buildpack-cflinuxfs3-v1.4.35.zip   cflinuxfs3
+staticfile_buildpack    4          true      false    staticfile-buildpack-cflinuxfs2-v1.4.35.zip   cflinuxfs2
+binary_buildpack        5          true      false    binary-buildpack-cflinuxfs2-v1.0.27.zip       cflinuxfs2
+java_buildpack          6          true      false    java-buildpack-cflinuxfs2-v4.16.1.zip         cflinuxfs2
+java_buildpack          7          true      false    java-buildpack-cflinuxfs3-v4.16.1.zip         cflinuxfs3
+ruby_buildpack          8          true      false    ruby-buildpack-cflinuxfs2-v1.7.27.zip         cflinuxfs2
+ruby_buildpack          9          true      false    ruby-buildpack-cflinuxfs3-v1.7.27.zip         cflinuxfs3
+dotnet_core_buildpack   10         true      false    dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip   cflinuxfs2
+dotnet_core_buildpack   11         true      false    dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip   cflinuxfs3
+nodejs_buildpack        12         true      false    nodejs-buildpack-cflinuxfs2-v1.6.34.zip       cflinuxfs2
+nodejs_buildpack        13         true      false    nodejs-buildpack-cflinuxfs3-v1.6.34.zip       cflinuxfs3
+go_buildpack            14         true      false    go-buildpack-cflinuxfs2-v1.8.29.zip           cflinuxfs2
+go_buildpack            15         true      false    go-buildpack-cflinuxfs3-v1.8.29.zip           cflinuxfs3
+python_buildpack        16         true      false    python-buildpack-cflinuxfs2-v1.6.23.zip       cflinuxfs2
+python_buildpack        17         true      false    python-buildpack-cflinuxfs3-v1.6.23.zip       cflinuxfs3
+php_buildpack           18         true      false    php-buildpack-cflinuxfs2-v4.3.64.zip          cflinuxfs2
+php_buildpack           19         true      false    php-buildpack-cflinuxfs3-v4.3.64.zip          cflinuxfs3
+binary_buildpack        20         true      false    binary-buildpack-cflinuxfs3-v1.0.27.zip       cflinuxfs3
++ sed -i 's|\(.*\)cflinuxfs.*|\1cflinuxfs2|g' dummy_buildpack/manifest.yml
++ cat dummy_buildpack/manifest.yml
+---
+stack:
+  - cflinuxfs2
++ cf update-buildpack dummy_buildpack -p dummy_buildpack -s cflinuxfs2
+REQUEST: [2018-12-06T14:45:40+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 4b951f5d-103f-4e1b-5fc2-09285a069a3b::6c34bf48-98b6-47d9-a899-7ea92c6a132a
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:40+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Set-Cookie: X-Uaa-Csrf=vJ5XZv4jbqszXAAK0jRAn7; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:40 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 0c48f6c2-3248-4b49-4cb9-9816634a19d6
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+Updating buildpack dummy_buildpack with stack cflinuxfs2 as admin...
+REQUEST: [2018-12-06T14:45:40+02:00]
+GET /v2/buildpacks?q=name%3Adummy_buildpack&q=stack%3Acflinuxfs2 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 200 OK
+Content-Length: 571
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 3ee18218-f179-4c68-4e6d-126d1b16f3bf::98103c60-65a2-48bf-ade2-df31ad180a6c
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "enabled": true,
+        "filename": "dummy_buildpack.zip",
+        "locked": false,
+        "name": "dummy_buildpack",
+        "position": 2,
+        "stack": "cflinuxfs2"
+      },
+      "metadata": {
+        "created_at": "2018-12-06T12:45:34Z",
+        "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "updated_at": "2018-12-06T12:45:34Z",
+        "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+REQUEST: [2018-12-06T14:45:40+02:00]
+PUT /v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+{
+  "name": "dummy_buildpack"
+}
+
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 201 Created
+Content-Length: 400
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: e2bbc101-82e1-474f-68bd-43be7043024e::c06bd716-d940-4401-b8c6-4e0cbd5369cc
+{
+  "entity": {
+    "enabled": true,
+    "filename": "dummy_buildpack.zip",
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 2,
+    "stack": "cflinuxfs2"
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:34Z",
+    "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+    "updated_at": "2018-12-06T12:45:40Z",
+    "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da"
+  }
+}
+
+
+OK
+Uploading buildpack dummy_buildpack as admin...
+ 0 B / 836 B [---------------------------------------------------------------------------------------]   0.00%
+REQUEST: [2018-12-06T14:45:40+02:00]
+PUT /v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da/bits HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: multipart/form-data; boundary=0b497b60ec5a88ed411fd38fa6655c3c302dcb3bdf3eb4677f3029292067
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+[multipart/form-data Content Hidden]
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 422 Unprocessable Entity
+Content-Length: 152
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 9bd3ca53-42e6-4348-6be2-6025c917648d::853383ee-a5d8-48eb-810e-c25479c8edf6
+{
+  "code": 390011,
+  "description": "Uploaded buildpack stack (cflinuxfs2) does not match cflinuxfs2",
+  "error_code": "CF-BuildpackStacksDontMatch"
+}
+
+
+Uploaded buildpack stack (cflinuxfs2) does not match cflinuxfs2
+FAILED
++ cf buildpacks
+Getting buildpacks...
+
+
+REQUEST: [2018-12-06T14:45:40+02:00]
+GET /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:40+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 9805
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: ce1d3df7-4562-4136-6beb-90a50c2fff52::e6238ef9-5f20-4011-bf88-03d7b64262ee
+
+{
+  "total_results": 20,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "created_at": "2018-12-06T12:45:38Z",
+        "updated_at": "2018-12-06T12:45:38Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 1,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "created_at": "2018-12-06T12:45:34Z",
+        "updated_at": "2018-12-06T12:45:40Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 2,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "a41e5649-14d4-44c6-ac08-73748844bed1",
+        "url": "/v2/buildpacks/a41e5649-14d4-44c6-ac08-73748844bed1",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-05T14:55:55Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 3,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs3-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "url": "/v2/buildpacks/32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "created_at": "2018-12-04T15:32:05Z",
+        "updated_at": "2018-12-05T14:55:38Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 4,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs2-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "url": "/v2/buildpacks/97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-05T13:28:29Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 5,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs2-v1.0.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "url": "/v2/buildpacks/2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 6,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs2-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e6433194-226d-4c01-9f19-3077f9e2c897",
+        "url": "/v2/buildpacks/e6433194-226d-4c01-9f19-3077f9e2c897",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 7,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs3-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "url": "/v2/buildpacks/ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 8,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs2-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "url": "/v2/buildpacks/8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 9,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs3-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "url": "/v2/buildpacks/8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 10,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "53782e3b-6d83-4633-bc78-801838550598",
+        "url": "/v2/buildpacks/53782e3b-6d83-4633-bc78-801838550598",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 11,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "url": "/v2/buildpacks/e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 12,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs2-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "url": "/v2/buildpacks/732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 13,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs3-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "url": "/v2/buildpacks/6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 14,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs2-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "url": "/v2/buildpacks/e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 15,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs3-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "42ae30b9-66d5-460a-917c-843cdab4a153",
+        "url": "/v2/buildpacks/42ae30b9-66d5-460a-917c-843cdab4a153",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 16,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs2-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "37908003-6381-455b-8b10-792b7dc08bba",
+        "url": "/v2/buildpacks/37908003-6381-455b-8b10-792b7dc08bba",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 17,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs3-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "url": "/v2/buildpacks/c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 18,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs2-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "url": "/v2/buildpacks/4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 19,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs3-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "633d6821-ae12-4f16-a306-214eba35884c",
+        "url": "/v2/buildpacks/633d6821-ae12-4f16-a306-214eba35884c",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 20,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs3-v1.0.27.zip"
+      }
+    }
+  ]
+}
+buildpack               position   enabled   locked   filename                                      stack
+dummy_buildpack         1          true      false    dummy_buildpack.zip                           cflinuxfs3
+dummy_buildpack         2          true      false    dummy_buildpack.zip                           cflinuxfs2
+staticfile_buildpack    3          true      false    staticfile-buildpack-cflinuxfs3-v1.4.35.zip   cflinuxfs3
+staticfile_buildpack    4          true      false    staticfile-buildpack-cflinuxfs2-v1.4.35.zip   cflinuxfs2
+binary_buildpack        5          true      false    binary-buildpack-cflinuxfs2-v1.0.27.zip       cflinuxfs2
+java_buildpack          6          true      false    java-buildpack-cflinuxfs2-v4.16.1.zip         cflinuxfs2
+java_buildpack          7          true      false    java-buildpack-cflinuxfs3-v4.16.1.zip         cflinuxfs3
+ruby_buildpack          8          true      false    ruby-buildpack-cflinuxfs2-v1.7.27.zip         cflinuxfs2
+ruby_buildpack          9          true      false    ruby-buildpack-cflinuxfs3-v1.7.27.zip         cflinuxfs3
+dotnet_core_buildpack   10         true      false    dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip   cflinuxfs2
+dotnet_core_buildpack   11         true      false    dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip   cflinuxfs3
+nodejs_buildpack        12         true      false    nodejs-buildpack-cflinuxfs2-v1.6.34.zip       cflinuxfs2
+nodejs_buildpack        13         true      false    nodejs-buildpack-cflinuxfs3-v1.6.34.zip       cflinuxfs3
+go_buildpack            14         true      false    go-buildpack-cflinuxfs2-v1.8.29.zip           cflinuxfs2
+go_buildpack            15         true      false    go-buildpack-cflinuxfs3-v1.8.29.zip           cflinuxfs3
+python_buildpack        16         true      false    python-buildpack-cflinuxfs2-v1.6.23.zip       cflinuxfs2
+python_buildpack        17         true      false    python-buildpack-cflinuxfs3-v1.6.23.zip       cflinuxfs3
+php_buildpack           18         true      false    php-buildpack-cflinuxfs2-v4.3.64.zip          cflinuxfs2
+php_buildpack           19         true      false    php-buildpack-cflinuxfs3-v4.3.64.zip          cflinuxfs3
+binary_buildpack        20         true      false    binary-buildpack-cflinuxfs3-v1.0.27.zip       cflinuxfs3
++ sed -i 's|\(.*\)cflinuxfs.*|\1cflinuxfs3|g' dummy_buildpack/manifest.yml
++ cat dummy_buildpack/manifest.yml
+---
+stack:
+  - cflinuxfs3
++ cf update-buildpack dummy_buildpack -p dummy_buildpack -s cflinuxfs3
+REQUEST: [2018-12-06T14:45:41+02:00]
+GET /v2/info HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 200 OK
+Content-Length: 546
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: b54bb65e-2851-40e2-70c3-68df4a29da23::4d1b24eb-1a19-4c2b-ae96-d3a711a90d11
+{
+  "api_version": "2.128.0",
+  "app_ssh_endpoint": "ssh.bosh-lite.com:2222",
+  "app_ssh_host_key_fingerprint": "ea:36:47:b4:55:d7:0c:ae:39:9a:67:11:e6:a4:ff:26",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.bosh-lite.com",
+  "build": "",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.bosh-lite.com:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "",
+  "osbapi_version": "2.14",
+  "routing_endpoint": "https://api.bosh-lite.com/routing",
+  "support": "",
+  "token_endpoint": "https://uaa.bosh-lite.com",
+  "version": 0
+}
+
+
+REQUEST: [2018-12-06T14:45:41+02:00]
+GET /login HTTP/1.1
+Host: login.bosh-lite.com
+Accept: application/json
+Connection: close
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 374
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 06 Dec 2018 12:45:40 GMT
+Set-Cookie: X-Uaa-Csrf=UfjNF78PNLunFAVgvDMXyy; Max-Age=86400; Expires=Fri, 07-Dec-2018 12:45:41 GMT; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: c2bd117f-2301-45c6-6cfd-982ff3220f95
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.24.0"
+  },
+  "commit_id": "16d9900",
+  "entityID": "login.bosh-lite.com",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.bosh-lite.com",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.bosh-lite.com"
+  },
+  "prompts": {
+    "password": "[PRIVATE DATA HIDDEN]",
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2018-11-06T01:20:26+0000",
+  "zone_name": "uaa"
+}
+
+
+Updating buildpack dummy_buildpack with stack cflinuxfs3 as admin...
+REQUEST: [2018-12-06T14:45:41+02:00]
+GET /v2/buildpacks?q=name%3Adummy_buildpack&q=stack%3Acflinuxfs3 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 200 OK
+Content-Length: 571
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: a49794f4-e09a-4899-68d3-b07dedb95927::0710eb84-1406-42c8-9ebe-9131d8f5f48f
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "enabled": true,
+        "filename": "dummy_buildpack.zip",
+        "locked": false,
+        "name": "dummy_buildpack",
+        "position": 1,
+        "stack": "cflinuxfs3"
+      },
+      "metadata": {
+        "created_at": "2018-12-06T12:45:38Z",
+        "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "updated_at": "2018-12-06T12:45:38Z",
+        "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+REQUEST: [2018-12-06T14:45:41+02:00]
+PUT /v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90 HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+{
+  "name": "dummy_buildpack"
+}
+
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 201 Created
+Content-Length: 400
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 72e640e2-8a62-48ce-67a3-24e69b2af2a3::c7c0c921-5cb4-4184-b1c6-9eb8592c1414
+{
+  "entity": {
+    "enabled": true,
+    "filename": "dummy_buildpack.zip",
+    "locked": false,
+    "name": "dummy_buildpack",
+    "position": 1,
+    "stack": "cflinuxfs3"
+  },
+  "metadata": {
+    "created_at": "2018-12-06T12:45:38Z",
+    "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+    "updated_at": "2018-12-06T12:45:41Z",
+    "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90"
+  }
+}
+
+
+OK
+Uploading buildpack dummy_buildpack as admin...
+ 0 B / 836 B [---------------------------------------------------------------------------------------]   0.00%
+REQUEST: [2018-12-06T14:45:41+02:00]
+PUT /v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90/bits HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: multipart/form-data; boundary=fe67144194250f1ff4ca02777b7da706abfc73ed7effb60ae696032f49a5
+User-Agent: cf/6.41.0+dd4c76cdd.2018-11-28 (go1.11.2; amd64 linux)
+[multipart/form-data Content Hidden]
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 422 Unprocessable Entity
+Content-Length: 152
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 873ec81e-3bbf-4511-488b-907632ffc1a8::dc8df64a-9e16-4271-b656-cde54646dc6b
+{
+  "code": 390011,
+  "description": "Uploaded buildpack stack (cflinuxfs3) does not match cflinuxfs3",
+  "error_code": "CF-BuildpackStacksDontMatch"
+}
+
+
+Uploaded buildpack stack (cflinuxfs3) does not match cflinuxfs3
+FAILED
++ cf buildpacks
+Getting buildpacks...
+
+
+REQUEST: [2018-12-06T14:45:41+02:00]
+GET /v2/buildpacks HTTP/1.1
+Host: api.bosh-lite.com
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Content-Type: application/json
+User-Agent: go-cli 6.41.0+dd4c76cdd.2018-11-28 / linux
+
+
+
+RESPONSE: [2018-12-06T14:45:41+02:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 9805
+Content-Type: application/json;charset=utf-8
+Date: Thu, 06 Dec 2018 12:45:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 329b79f9-db60-4e44-7c60-138ac83e12f4::15a4e436-299d-4561-921c-0037c1a4a257
+
+{
+  "total_results": 20,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "url": "/v2/buildpacks/a3f4c6ae-cb26-4c13-9fc9-2fec40bbfc90",
+        "created_at": "2018-12-06T12:45:38Z",
+        "updated_at": "2018-12-06T12:45:41Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 1,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "url": "/v2/buildpacks/16fc90ec-86d4-47ef-9027-4417e5bc86da",
+        "created_at": "2018-12-06T12:45:34Z",
+        "updated_at": "2018-12-06T12:45:40Z"
+      },
+      "entity": {
+        "name": "dummy_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 2,
+        "enabled": true,
+        "locked": false,
+        "filename": "dummy_buildpack.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "a41e5649-14d4-44c6-ac08-73748844bed1",
+        "url": "/v2/buildpacks/a41e5649-14d4-44c6-ac08-73748844bed1",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-05T14:55:55Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 3,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs3-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "url": "/v2/buildpacks/32cb3a32-fe2f-44c9-842c-c8dd9266aea4",
+        "created_at": "2018-12-04T15:32:05Z",
+        "updated_at": "2018-12-05T14:55:38Z"
+      },
+      "entity": {
+        "name": "staticfile_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 4,
+        "enabled": true,
+        "locked": false,
+        "filename": "staticfile-buildpack-cflinuxfs2-v1.4.35.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "url": "/v2/buildpacks/97917899-fb11-4c98-b759-acba4dc2d9f8",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-05T13:28:29Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 5,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs2-v1.0.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "url": "/v2/buildpacks/2e4fcf6c-28fb-4467-b77a-711bc3e41970",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 6,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs2-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e6433194-226d-4c01-9f19-3077f9e2c897",
+        "url": "/v2/buildpacks/e6433194-226d-4c01-9f19-3077f9e2c897",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "java_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 7,
+        "enabled": true,
+        "locked": false,
+        "filename": "java-buildpack-cflinuxfs3-v4.16.1.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "url": "/v2/buildpacks/ec329ec6-a715-43b6-9e23-a190eb6e552c",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 8,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs2-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "url": "/v2/buildpacks/8c7bfafc-f979-4c73-940b-c5f7bdb11a51",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "ruby_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 9,
+        "enabled": true,
+        "locked": false,
+        "filename": "ruby-buildpack-cflinuxfs3-v1.7.27.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "url": "/v2/buildpacks/8787b548-651f-4a1e-8c81-b5e851afc39e",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 10,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "53782e3b-6d83-4633-bc78-801838550598",
+        "url": "/v2/buildpacks/53782e3b-6d83-4633-bc78-801838550598",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "dotnet_core_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 11,
+        "enabled": true,
+        "locked": false,
+        "filename": "dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "url": "/v2/buildpacks/e651f6b0-f0a0-4ecc-a550-d94ae88e69ce",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 12,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs2-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "url": "/v2/buildpacks/732ecd90-c6d2-4078-95bc-d921b26c5d59",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:06Z"
+      },
+      "entity": {
+        "name": "nodejs_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 13,
+        "enabled": true,
+        "locked": false,
+        "filename": "nodejs-buildpack-cflinuxfs3-v1.6.34.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "url": "/v2/buildpacks/6a39b254-baab-4aa8-b0b8-795af41870d7",
+        "created_at": "2018-12-04T15:32:06Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 14,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs2-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "url": "/v2/buildpacks/e0e316e2-3b35-4351-bbd2-08aa1905ac1d",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "go_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 15,
+        "enabled": true,
+        "locked": false,
+        "filename": "go-buildpack-cflinuxfs3-v1.8.29.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "42ae30b9-66d5-460a-917c-843cdab4a153",
+        "url": "/v2/buildpacks/42ae30b9-66d5-460a-917c-843cdab4a153",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 16,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs2-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "37908003-6381-455b-8b10-792b7dc08bba",
+        "url": "/v2/buildpacks/37908003-6381-455b-8b10-792b7dc08bba",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "python_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 17,
+        "enabled": true,
+        "locked": false,
+        "filename": "python-buildpack-cflinuxfs3-v1.6.23.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "url": "/v2/buildpacks/c1277f30-ba6a-4210-b09c-46e0bad442c6",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs2",
+        "position": 18,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs2-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "url": "/v2/buildpacks/4bff5bb7-49f8-448f-93c0-8e8799f53f4e",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "php_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 19,
+        "enabled": true,
+        "locked": false,
+        "filename": "php-buildpack-cflinuxfs3-v4.3.64.zip"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "633d6821-ae12-4f16-a306-214eba35884c",
+        "url": "/v2/buildpacks/633d6821-ae12-4f16-a306-214eba35884c",
+        "created_at": "2018-12-04T15:32:07Z",
+        "updated_at": "2018-12-04T15:32:07Z"
+      },
+      "entity": {
+        "name": "binary_buildpack",
+        "stack": "cflinuxfs3",
+        "position": 20,
+        "enabled": true,
+        "locked": false,
+        "filename": "binary-buildpack-cflinuxfs3-v1.0.27.zip"
+      }
+    }
+  ]
+}
+buildpack               position   enabled   locked   filename                                      stack
+dummy_buildpack         1          true      false    dummy_buildpack.zip                           cflinuxfs3
+dummy_buildpack         2          true      false    dummy_buildpack.zip                           cflinuxfs2
+staticfile_buildpack    3          true      false    staticfile-buildpack-cflinuxfs3-v1.4.35.zip   cflinuxfs3
+staticfile_buildpack    4          true      false    staticfile-buildpack-cflinuxfs2-v1.4.35.zip   cflinuxfs2
+binary_buildpack        5          true      false    binary-buildpack-cflinuxfs2-v1.0.27.zip       cflinuxfs2
+java_buildpack          6          true      false    java-buildpack-cflinuxfs2-v4.16.1.zip         cflinuxfs2
+java_buildpack          7          true      false    java-buildpack-cflinuxfs3-v4.16.1.zip         cflinuxfs3
+ruby_buildpack          8          true      false    ruby-buildpack-cflinuxfs2-v1.7.27.zip         cflinuxfs2
+ruby_buildpack          9          true      false    ruby-buildpack-cflinuxfs3-v1.7.27.zip         cflinuxfs3
+dotnet_core_buildpack   10         true      false    dotnet-core-buildpack-cflinuxfs2-v2.2.0.zip   cflinuxfs2
+dotnet_core_buildpack   11         true      false    dotnet-core-buildpack-cflinuxfs3-v2.2.0.zip   cflinuxfs3
+nodejs_buildpack        12         true      false    nodejs-buildpack-cflinuxfs2-v1.6.34.zip       cflinuxfs2
+nodejs_buildpack        13         true      false    nodejs-buildpack-cflinuxfs3-v1.6.34.zip       cflinuxfs3
+go_buildpack            14         true      false    go-buildpack-cflinuxfs2-v1.8.29.zip           cflinuxfs2
+go_buildpack            15         true      false    go-buildpack-cflinuxfs3-v1.8.29.zip           cflinuxfs3
+python_buildpack        16         true      false    python-buildpack-cflinuxfs2-v1.6.23.zip       cflinuxfs2
+python_buildpack        17         true      false    python-buildpack-cflinuxfs3-v1.6.23.zip       cflinuxfs3
+php_buildpack           18         true      false    php-buildpack-cflinuxfs2-v4.3.64.zip          cflinuxfs2
+php_buildpack           19         true      false    php-buildpack-cflinuxfs3-v4.3.64.zip          cflinuxfs3
+binary_buildpack        20         true      false    binary-buildpack-cflinuxfs3-v1.0.27.zip       cflinuxfs3
+apama@vmbgcloudf06:~/Downloads/ivan/cf-update-buildpack-issue$
